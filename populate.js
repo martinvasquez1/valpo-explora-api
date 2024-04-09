@@ -12,6 +12,8 @@ const comunas = [];
 mongoose.set('strictQuery', false);
 const mongoDB = process.env.MONGODB_URI;
 
+const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 async function comunaCreate(index, data) {
   const comuna = new Comuna(data);
   await comuna.save();
@@ -20,6 +22,7 @@ async function comunaCreate(index, data) {
 }
 
 async function placeCreate(index, data) {
+	data.description = lorem;
   const place = new Place(data);
   await place.save();
   places[index] = place;
@@ -37,10 +40,11 @@ async function createComunas() {
 async function createPlaces() {
   console.log('Adding places');
   await Promise.all([
-    placeCreate(0, { name: 'Place 100', comuna: comunas[0] }),
-    placeCreate(1, { name: 'Place 101', comuna: comunas[0] }),
-    placeCreate(2, { name: 'Place 102', comuna: comunas[1] }),
-    placeCreate(3, { name: 'Place 103', comuna: comunas[1] }),
+    placeCreate(0, { name: 'Place 100', comuna: comunas[0], imageUrl: 'https://images.unsplash.com/photo-1544023920-93dd2bd912e0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}),
+    placeCreate(1, { name: 'Place 101', comuna: comunas[0], imageUrl: 'https://images.unsplash.com/photo-1586461827441-b4cf43af68ee?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }),
+    placeCreate(2, { name: 'Place 102', comuna: comunas[0], imageUrl: 'https://images.unsplash.com/photo-1601311854011-376bc4f1f19b?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}),
+    placeCreate(3, { name: 'Place 103', comuna: comunas[0], imageUrl: 'https://images.unsplash.com/photo-1552686637-83c59eba15f6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }),
+    placeCreate(4, { name: 'Place 104', comuna: comunas[1], imageUrl: 'https://images.unsplash.com/photo-1561324933-111547d38127?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }),
   ]);
 }
 
