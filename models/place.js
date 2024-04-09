@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const PlaceSchema = new Schema({
   name: { type: String, required: true },
-  zone: { type: Schema.Types.ObjectId, ref: 'Zone' },
+  comuna: { type: Schema.Types.ObjectId, ref: 'Comuna', required: true },
   description: { type: String },
   imageUrl: { type: String },
   type: { type: String },

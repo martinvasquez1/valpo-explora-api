@@ -1,31 +1,30 @@
 const asyncHandler = require('express-async-handler');
-const Place = require('../models/place');
+const Comuna = require('../models/comuna');
 const { body, validationResult } = require('express-validator');
 
-exports.getPlaces = asyncHandler(async (req, res) => {
-  console.log('Hi');
-  const places = await Place.find().sort({ name: 1 }).exec();
-  res.status(200).json({ status: 'success', data: { places } });
+exports.getComunas = asyncHandler(async (req, res) => {
+  const comunas = await Comuna.find().sort({ name: 1 }).exec();
+  res.status(200).json({ status: 'success', data: { comunas } });
 });
 
-exports.getPlace = asyncHandler(async (req, res) => {
-  const place = await Place.findById(req.params.id).exec();
+exports.getComuna = asyncHandler(async (req, res) => {
+  const comuna = await Comuna.findById(req.params.id).exec();
 
-  if (!place) {
+  if (!comuna) {
     res.status(404).json({
       status: 'error',
-      message: 'Place does not exist.',
+      message: 'Comuna does not exist.',
     });
     return;
   }
 
   res.status(200).json({
     status: 'success',
-    data: { place },
+    data: { comuna },
   });
 });
 
-exports.createPlace = [
+exports.createComuna = [
   body('name').trim().escape(),
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
@@ -38,19 +37,19 @@ exports.createPlace = [
       return;
     }
 
-    const place = new Place({
+    const comuna = new Comuna({
       name: req.body.name,
     });
 
-    const newPlace = await place.save();
+    const newComuna = await comuna.save();
     res.status(200).json({
       status: 'success',
-      data: { place: newPlace },
+      data: { comuna: newComuna },
     });
   }),
 ];
 
-exports.updatePlace = [
+exports.updateComuna = [
   body('name').trim().escape(),
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
@@ -66,30 +65,30 @@ exports.updatePlace = [
     const id = req.params.id;
     const payload = { name: req.body.name };
 
-    const place = await Place.findByIdAndUpdate(id, payload, { new: true });
+    const comuna = await Comuna.findByIdAndUpdate(id, payload, { new: true });
 
-    if (!place) {
+    if (!comuna) {
       res.status(404).json({
         status: 'error',
-        message: 'Place does not exist.',
+        message: 'Comuna does not exist.',
       });
       return;
     }
 
     res.status(200).json({
       status: 'success',
-      data: { place },
+      data: { comuna },
     });
   }),
 ];
 
-exports.deletePlace = asyncHandler(async (req, res) => {
-  const place = await Place.findByIdAndDelete(req.params.id).exec();
+exports.deleteComuna = asyncHandler(async (req, res) => {
+  const comuna = await Comuna.findByIdAndDelete(req.params.id).exec();
 
-  if (!place) {
+  if (!comuna) {
     res.status(404).json({
       status: 'error',
-      message: 'Place does not exist.',
+      message: 'Comuna does not exist.',
     });
     return;
   }
