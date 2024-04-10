@@ -3,7 +3,6 @@ const Place = require('../models/place');
 const { body, validationResult } = require('express-validator');
 
 exports.getPlaces = asyncHandler(async (req, res) => {
-  console.log('Hi');
   const places = await Place.find().sort({ name: 1 }).exec();
   res.status(200).json({ status: 'success', data: { places } });
 });
