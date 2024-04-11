@@ -44,6 +44,7 @@ async function createPlaces() {
     placeCreate(0, {
       name: 'Place 100',
       comuna: comunas[0],
+      address: 'Avenida Pacífico, Pacífico',
       type: 'art',
       lat: -33.028850620709505,
       lng: -71.64729596032845,
@@ -53,6 +54,7 @@ async function createPlaces() {
     placeCreate(1, {
       name: 'Place 101',
       comuna: comunas[0],
+      address: 'Santa Marta, Pacífico',
       type: 'art',
       lat: -33.02921042059679,
       lng: -71.64291631350062,
@@ -62,6 +64,7 @@ async function createPlaces() {
     placeCreate(2, {
       name: 'Place 102',
       comuna: comunas[0],
+      address: 'Alcalde Barrios, Población Bueras',
       type: 'art',
       lat: -33.02719552230843,
       lng: -71.63993553150486,
@@ -71,6 +74,7 @@ async function createPlaces() {
     placeCreate(3, {
       name: 'Place 103',
       comuna: comunas[0],
+      address: 'República, Cerro Mesilla',
       type: 'museum',
       lat: -33.029876046515824,
       lng: -71.63804769515993,
@@ -80,6 +84,7 @@ async function createPlaces() {
     placeCreate(4, {
       name: 'Place 104',
       comuna: comunas[1],
+      address: 'República, Cerro Mesilla',
       type: 'museum',
       lat: -33.031423157607165,
       lng: -71.63646045725379,
